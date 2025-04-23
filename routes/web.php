@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,3 +19,17 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('admin/category/view_category', [AdminController::class, 'view_category'])->middleware(['auth', 'admin']);
+Route::post('add_category', [AdminController::class, 'add_Category'])->middleware(['auth', 'admin']);
+Route::get('delete_category/{id}', [AdminController::class, 'delete_Category'])->middleware(['auth', 'admin']);
+Route::get('edit_category/{id}', [AdminController::class, 'edit_Category'])->middleware(['auth', 'admin']);
+Route::post('update_category/{id}', [AdminController::class, 'update_Category'])->middleware(['auth', 'admin']);
+
+Route::get('admin/product/view_product', [AdminController::class, 'view_product'])->middleware(['auth', 'admin']);
+Route::get('add_product', [AdminController::class, 'add_Product'])->middleware(['auth', 'admin']);
+Route::post('upload_product', [AdminController::class, 'upload_Product'])->middleware(['auth', 'admin']);
+Route::get('delete_product/{id}', [AdminController::class, 'delete_Product'])->middleware(['auth', 'admin']);
+Route::get('edit_product/{id}', [AdminController::class, 'edit_Product'])->middleware(['auth', 'admin']);
+// Route::post('update_product/{id}', [AdminController::class, 'update_Product'])->middleware(['auth', 'admin']);
