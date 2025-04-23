@@ -55,7 +55,7 @@
             <h1>Add product</h1>
 
           <div class="div_deg">
-            <form action="{{url('upload_product')}}" method="post"
+            <form action="{{url('admin/product/upload_product')}}" method="post"
             enctype="multipart/form-data">
 
             @csrf

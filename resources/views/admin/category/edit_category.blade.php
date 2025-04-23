@@ -35,7 +35,7 @@
             <div>
                 <h1>Update Category<h1>
                 <div class="div_deg">
-                    <form action="{{url('update_category/'.$data->id)}}" method="post">
+                    <form action="{{url('admin/category/update_category', $data->id)}}" method="post">
                         @csrf
                         <input type="text" name="category" value="{{$data->category_name}}">
                         <input class="btn btn-primary" type="submit" value="Update category">

@@ -29,7 +29,6 @@
             font-weight: bold;
             color: white;
         }
-
         td
         {
             color: white;
@@ -51,13 +50,11 @@
 
         <h1 style="color: white">Add category</h1>
         <div class="div_deg">
-            <form action="{{url('add_category')}}" method="post">
-            @csrf
+            <form action="{{ url('admin/category/add_category') }}" method="post">
+                @csrf
                 <div>
                     <input type="text" name="category">
-
-                    <input class="btn btn-primary" type="submit"
-                    value="Add category">
+                    <input class="btn btn-primary" type="submit" value="Add category">
                 </div>
             </form>
         </div>
@@ -75,12 +72,12 @@
                     <td>{{$data->category_name}}</td>
 
                     <td>
-                        <a class="btn btn-success" href="{{url('edit_category', $data->id)}}">Edit</a>
+                        <a class="btn btn-success" href="{{url('admin/category/edit_category', $data->id)}}">Edit</a>
                     <td>
 
                     <td>
                         <a class="btn btn-danger" onclick="confirmation(event)"
-                        href="{{url('delete_category', $data->id)}}">Delete</a>
+                        href="{{url('admin/category/delete_category', $data->id)}}">Delete</a>
                     </td>
                 </tr>
                 @endforeach

@@ -1,16 +1,19 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'home']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'login_home'])
+->middleware(['auth', 'verified'])->name('dashboard');
+
+route::get('product_details/{id}',[HomeController::class, 'details_product']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -20,16 +23,19 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('admin/category/view_category', [AdminController::class, 'view_category'])->middleware(['auth', 'admin']);
-Route::post('add_category', [AdminController::class, 'add_Category'])->middleware(['auth', 'admin']);
-Route::get('delete_category/{id}', [AdminController::class, 'delete_Category'])->middleware(['auth', 'admin']);
-Route::get('edit_category/{id}', [AdminController::class, 'edit_Category'])->middleware(['auth', 'admin']);
-Route::post('update_category/{id}', [AdminController::class, 'update_Category'])->middleware(['auth', 'admin']);
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::get('dashboard', [HomeController::class, 'index']);
+Route::get('category/view_category', [CategoryController::class, 'view_category']);
+route::post('category/add_category',[CategoryController::class, 'add_category']);
+Route::get('category/delete_category/{id}', [CategoryController::class, 'delete_Category']);
+Route::get('category/edit_category/{id}', [CategoryController::class, 'edit_Category']);
+Route::post('category/update_category/{id}', [CategoryController::class, 'update_Category']);
 
-Route::get('admin/product/view_product', [AdminController::class, 'view_product'])->middleware(['auth', 'admin']);
-Route::get('add_product', [AdminController::class, 'add_Product'])->middleware(['auth', 'admin']);
-Route::post('upload_product', [AdminController::class, 'upload_Product'])->middleware(['auth', 'admin']);
-Route::get('delete_product/{id}', [AdminController::class, 'delete_Product'])->middleware(['auth', 'admin']);
-Route::get('edit_product/{id}', [AdminController::class, 'edit_Product'])->middleware(['auth', 'admin']);
-// Route::post('update_product/{id}', [AdminController::class, 'update_Product'])->middleware(['auth', 'admin']);
+Route::get('product/view_product', [ProductController::class, 'view_product']);
+Route::get('product/add_product', [ProductController::class, 'add_Product']);
+Route::post('product/upload_product', [ProductController::class, 'upload_Product']);
+Route::get('product/delete_product/{id}', [ProductController::class, 'delete_Product']);
+Route::get('product/edit_product/{id}', [ProductController::class, 'edit_Product']);
+Route::post('product/update_product/{id}', [ProductController::class, 'update_Product']);
+Route::post('product/product_search', [ProductController::class, 'search_Product']);
+});

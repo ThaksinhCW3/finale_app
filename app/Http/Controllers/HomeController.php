@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -14,7 +14,24 @@ class HomeController extends Controller
         return view('admin.index');
     }
 
-    public function home(){
-        return view('home.index');
+    public function home()
+    {
+        $product = Product::all();
+
+        return view('home.index',compact('product'));
+    }
+
+    public function login_home()
+    {
+        $product = Product::all();
+
+        return view('home.index',compact('product'));
+    }
+
+    public function details_product($id)
+    {
+        $data = Product::find($id);
+        return view('home.product_details',
+         compact('data'));
     }
 }
