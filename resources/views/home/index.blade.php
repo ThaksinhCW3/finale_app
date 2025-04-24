@@ -19,7 +19,7 @@
   <!-- shop section -->
 
   <!-- end shop section -->
-    @include('home.product')
+    @include('home.product.product')
   <!-- contact section -->
   
   <br><br><br>

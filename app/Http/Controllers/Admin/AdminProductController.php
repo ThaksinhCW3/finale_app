@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Category;
 use App\Models\Product;
 
-class ProductController extends Controller
+class AdminProductController extends Controller
 {
     //PRODUCT
     public function add_product()
@@ -40,7 +40,7 @@ class ProductController extends Controller
             $data->image = $imagename;
         }
 
-        toastr()->closeButton()->timeOut(50000)
+        toastr()->closeButton()->timeOut(5000)
         ->success(message: 'Product has been upload Successfully');
         
         $data->save();
@@ -65,7 +65,7 @@ class ProductController extends Controller
 
         $data->delete();
 
-        toastr()->closeButton()->timeOut(50000)
+        toastr()->closeButton()->timeOut(5000)
         ->success(message: 'Product has been deleted Successfully');
 
         return redirect()->back();
@@ -110,7 +110,7 @@ class ProductController extends Controller
 
         $data->save();
 
-        toastr()->closeButton()->timeOut(50000)
+        toastr()->closeButton()->timeOut(5000)
             ->success(message: 'Product has been updated Successfully');
 
         return redirect('admin/product/view_product');

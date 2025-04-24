@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 
-class CategoryController extends Controller
+class AdminCategoryController extends Controller
 {
     //! VIEW CATEGORY
     public function view_category()
@@ -25,7 +25,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        toastr()->closeButton()->timeOut(50000)
+        toastr()->closeButton()->timeOut(5000)
         ->success(message: 'Category Added Successfully');
 
         return redirect()->back();
@@ -36,7 +36,7 @@ class CategoryController extends Controller
         $data = Category::find($id);
         $data->delete();
 
-        toastr()->closeButton()->timeOut(50000)
+        toastr()->closeButton()->timeOut(5000)
         ->success(message: 'Category has been deleted Successfully');
 
         return redirect()->back();
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         $data->category_name= $request->category;
         $data->save();
 
-        toastr()->closeButton()->timeOut(50000)
+        toastr()->closeButton()->timeOut(5000)
         ->success(message: 'Category has been updated Successfully');
 
         return redirect('admin/category/view_category');

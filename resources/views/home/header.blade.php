@@ -33,6 +33,9 @@
             <a class="nav-link" href="contact.html">Contact Us</a>
           </li>
         </ul>
+
+        
+
         {{-- login --}}
         <div class="user_option">
 
@@ -40,8 +43,13 @@
 
             @auth
 
-            <a hred="">
-              <i class="fa fa-shopping" aria-hidden="true"></i>
+            <a href="{{url('order/my_order')}}">
+              My orders
+            </a>
+
+            <a href="{{url('cart/my_cart')}}">
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+              {{$count}}
             </a>
 
             <form style="padding: 15px" method="POST" action="{{ route('logout') }}">
@@ -70,10 +78,7 @@
           @endauth
           @endif
 
-          {{-- <a href="">
-            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-          </a>
-          <form class="form-inline ">
+          {{-- <form class="form-inline ">
             <button class="btn nav_search-btn" type="submit">
               <i class="fa fa-search" aria-hidden="true"></i>
             </button>

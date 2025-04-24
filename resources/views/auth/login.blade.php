@@ -5,6 +5,14 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        <div class="flex items-center justify-center bg-gray-900">
+            <div class="text-white text-center">
+              <h1 class="text-3xl font-bold mb-4">Dear teacher, here's admin account</h1>
+              <h1 class="text-lg mb-2">email: admin@gmail.com</h1>
+              <h1 class="text-lg">Password: 12345678</h1>
+            </div>
+          </div>          
+
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
