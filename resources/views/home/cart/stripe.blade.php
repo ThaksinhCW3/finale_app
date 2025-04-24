@@ -20,7 +20,7 @@
 
     
 
-    <h1>Laravel Ecommerce Payment<br/> ItSolutionStuff.com</h1>
+    <h1 style="display: flex; justify-content: center; align-items: center;">Laravel Ecommerce Payment</h1>
 
     
 

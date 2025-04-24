@@ -73,7 +73,7 @@
 
                     <td>
                         <a class="btn btn-success" href="{{url('admin/category/edit_category', $data->id)}}">Edit</a>
-                    <td>
+                    </td>
 
                     <td>
                         <a class="btn btn-danger" onclick="confirmation(event)"
